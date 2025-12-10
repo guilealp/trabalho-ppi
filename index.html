@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Campeonato LoL – Página Única</title>
+<style>
+body { font-family: Arial; background: #f4f4f4; padding:20px; }
+h2 { color:#333; }
+.card { background:#fff; padding:15px; margin:10px 0; border-radius:8px; }
+label { display:block; margin-top:10px; }
+input, select { width:300px; padding:6px; margin-top:5px; }
+button { margin-top:15px; padding:10px 20px; cursor:pointer; }
+.hidden { display:none; }
+table { border-collapse: collapse; width:100%; margin-top:15px; }
+td, th { border:1px solid #ccc; padding:8px; }
+</style>
+</head>
+
+<body>
+
+<h1>Sistema de Campeonato — Protótipo em Página Única</h1>
+
+<div id="telaLogin" class="card">
+    <h2>Login</h2>
+    <label>Usuário:
+        <input id="loginUser">
+    </label>
+    <label>Senha:
+        <input id="loginPass" type="password">
+    </label>
+    <button onclick="login()">Entrar</button>
+    <p id="loginErro" style="color:red"></p>
+</div>
+
+<div id="telaMenu" class="card hidden">
+    <h2>Menu</h2>
+    <p><b>Usuário logado:</b> <span id="menuUser"></span></p>
+    <p><b>Último acesso:</b> <span id="menuAcesso"></span></p>
+
+    <button onclick="abrir('telaEquipe')">Cadastrar Equipe</button>
+    <button onclick="listarEquipes()">Listar Equipes</button>
+    <button onclick="abrir('telaJogador'); atualizarSelectEquipes()">Cadastrar Jogador</button>
+    <button onclick="listarJogadores()">Listar Jogadores</button>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<div id="telaEquipe" class="card hidden">
+    <h2>Cadastro de Equipe</h2>
+    <label>Nome da equipe: <input id="equipeNome"></label>
+    <label>Capitão: <input id="equipeCapitao"></label>
+    <label>Contato: <input id="equipeContato"></label>
+    <button onclick="cadastrarEquipe()">Salvar</button>
+    <p id="erroEquipe" style="color:red"></p>
+</div>
+
+<div id="telaEquipesListar" class="card hidden">
+    <h2>Equipes cadastradas</h2>
+    <table id="tabelaEquipes"></table>
+</div>
+
+<div id="telaJogador" class="card hidden">
+    <h2>Cadastro de Jogador</h2>
+    <label>Nome: <input id="jogNome"></label>
+    <label>Nickname: <input id="jogNick"></label>
+    <label>Função:
+        <select id="jogFuncao">
+            <option value="">-- escolha --</option>
+            <option value="top">Top</option>
+            <option value="jungle">Jungle</option>
+            <option value="mid">Mid</option>
+            <option value="atirador">Atirador</option>
+            <option value="suporte">Suporte</option>
+        </select>
+    </label>
+    <label>Elo: <input id="jogElo"></label>
+    <label>Gênero: <input id="jogGenero"></label>
+
+    <label>Equipe:
+        <select id="jogEquipe">
+            <option value="">-- escolha --</option>
+        </select>
+    </label>
+
+    <button onclick="cadastrarJogador()">Salvar</button>
+    <p id="erroJogador" style="color:red"></p>
+</div>
+
+<div id="telaJogadoresListar" class="card hidden">
+    <h2>Jogadores por Equipe</h2>
+    <div id="listaJogadores"></div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
