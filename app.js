@@ -17,6 +17,7 @@ function login() {
         menuUser.textContent = usuarioLogado;
 
         abrir("telaMenu");
+        atualizarNavbar();
     } else {
         loginErro.textContent = "Usuário ou senha inválidos";
     }
@@ -25,7 +26,24 @@ function login() {
 function logout() {
     usuarioLogado = null;
     abrir("telaLogin");
+    atualizarNavbar();
 }
+
+function atualizarNavbar() {
+    const userSpan = document.getElementById('navUser');
+    const navButtons = ['navMenu','navEquipe','navListEquipes','navJogador','navListJogadores','navLogout'];
+
+    if (usuarioLogado) {
+        userSpan.textContent = usuarioLogado;
+        navButtons.forEach(id => document.getElementById(id).disabled = false);
+    } else {
+        userSpan.textContent = 'Não conectado';
+        navButtons.forEach(id => document.getElementById(id).disabled = true);
+    }
+}
+
+// Inicializar estado da navbar quando o script for carregado
+window.addEventListener('DOMContentLoaded', atualizarNavbar);
 
 function abrir(tela) {
     document.querySelectorAll(".card").forEach(c => c.classList.add("hidden"));
@@ -48,6 +66,7 @@ function cadastrarEquipe() {
     equipeNome.value = "";
     equipeCapitao.value = "";
     equipeContato.value = "";
+    abrir('telaMenu');
 }
 
 function listarEquipes() {
@@ -109,6 +128,7 @@ function cadastrarJogador() {
     jogElo.value = "";
     jogGenero.value = "";
     jogEquipe.value = "";
+    abrir('telaMenu');
 }
 
 function listarJogadores() {

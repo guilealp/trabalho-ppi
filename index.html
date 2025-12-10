@@ -20,6 +20,21 @@ td, th { border:1px solid #ccc; padding:8px; }
 
 <h1>Sistema de Campeonato — Protótipo em Página Única</h1>
 
+<!-- NAVBAR -->
+<nav id="topbar" style="background:#222;color:#fff;padding:10px;border-radius:6px;margin-bottom:15px;display:flex;align-items:center;gap:10px;">
+    <div style="flex:1;">
+        <button id="navMenu" onclick="abrir('telaMenu')" style="margin-right:6px;">Menu</button>
+        <button id="navEquipe" onclick="abrir('telaEquipe')">Cadastrar Equipe</button>
+        <button id="navListEquipes" onclick="listarEquipes()">Listar Equipes</button>
+        <button id="navJogador" onclick="abrir('telaJogador'); atualizarSelectEquipes()">Cadastrar Jogador</button>
+        <button id="navListJogadores" onclick="listarJogadores()">Listar Jogadores</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+        <span id="navUser">Não conectado</span>
+        <button id="navLogout" onclick="logout()">Logout</button>
+    </div>
+</nav>
+
 <div id="telaLogin" class="card">
     <h2>Login</h2>
     <label>Usuário:
